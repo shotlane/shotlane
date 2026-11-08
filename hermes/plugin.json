@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "shotlane",
+  "version": "1.0.0",
+  "description": "A real browser for your agent: screenshots, phone, tablet and desktop checks, pages as Markdown and HTML to PDF.",
+  "author": { "name": "Shotlane", "email": "support@shotlane.dev", "url": "https://shotlane.dev" },
+  "homepage": "https://shotlane.dev",
+  "repository": "https://github.com/shotlane/shotlane",
+  "license": "MIT",
+  "keywords": ["screenshot", "pdf", "markdown", "browser", "mcp"],
+  "extensions": {
+    "com.nousresearch.hermes": {
+      "servers": { "shotlane": { "trust": "untrusted" } },
+      "config_schema": { "api_key": { "type": "secret", "env": "SHOTLANE_API_KEY" } }
+    }
+  }
+}

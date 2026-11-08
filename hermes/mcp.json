@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "shotlane": {
+      "type": "streamable-http",
+      "url": "https://shotlane.dev/mcp",
+      "headers": { "Authorization": "Bearer ${SHOTLANE_API_KEY}" }
+    }
+  }
+}

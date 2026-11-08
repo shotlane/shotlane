@@ -1,0 +1,12 @@
+{
+  "name": "shotlane",
+  "displayName": "Shotlane",
+  "version": "1.0.0",
+  "description": "A real browser for your agent: screenshots, phone, tablet and desktop checks, pages as Markdown and HTML to PDF.",
+  "author": { "name": "Shotlane", "url": "https://shotlane.dev" },
+  "homepage": "https://shotlane.dev",
+  "repository": "https://github.com/shotlane/shotlane",
+  "license": "MIT",
+  "keywords": ["screenshot", "pdf", "markdown", "browser", "mcp"],
+  "logo": "assets/logo.svg"
+}

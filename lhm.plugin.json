@@ -1,0 +1,218 @@
+{
+  "identifier": "shotlane-shotlane",
+  "name": "Shotlane",
+  "version": "1.0.0",
+  "author": "Shotlane",
+  "authorUrl": "https://shotlane.dev",
+  "homepage": "https://shotlane.dev",
+  "cloudEndpoint": "https://shotlane.dev/mcp",
+  "category": "developer",
+  "description": "A real browser for your agent: screenshots, phone, tablet and desktop checks, pages as Markdown and HTML to PDF. Sign in with OAuth or an API key. 100 free renders a month.",
+  "tags": [
+    "screenshot",
+    "pdf",
+    "markdown",
+    "browser",
+    "remote-mcp",
+    "oauth"
+  ],
+  "tools": [
+    {
+      "name": "screenshot",
+      "title": "Screenshot a web page",
+      "description": "Take a screenshot of a public web page and return it as an image you can look at. The user sees it in an inline viewer. Use it when the user asks for a screenshot or to see a page, including how it looks on a specific device such as an iPhone (set device), and for questions about how a page looks: layout or visual bugs, charts, images, or whether a deploy actually rendered. For page text, read_page returns Markdown. Uses 1 credit from the user's Shotlane account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Page URL; https:// is assumed if omitted."
+          },
+          "full_page": {
+            "type": "boolean",
+            "description": "Capture the whole scrollable page instead of just the viewport. Tall pages come back as several image slices so text stays readable.",
+            "default": false
+          },
+          "device": {
+            "type": "string",
+            "enum": [
+              "desktop",
+              "desktop_hd",
+              "laptop",
+              "ipad",
+              "iphone",
+              "iphone_se",
+              "pixel",
+              "galaxy",
+              "iphone_duo",
+              "iphone_duo_cover"
+            ],
+            "description": "Show the page as on this device (screen size and mobile mode). Overrides width and height."
+          },
+          "width": {
+            "type": "integer",
+            "description": "Viewport width in px (240-1920). Use 393 for a phone.",
+            "default": 1280
+          },
+          "height": {
+            "type": "integer",
+            "description": "Viewport height in px (240-2160).",
+            "default": 800
+          },
+          "dark_mode": {
+            "type": "boolean",
+            "default": false
+          },
+          "selector": {
+            "type": "string",
+            "description": "Optional CSS selector to capture a single element."
+          },
+          "delay": {
+            "type": "integer",
+            "description": "Extra wait after load in ms (0-10000).",
+            "default": 0
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    {
+      "name": "html_to_pdf",
+      "title": "Render HTML or a page to PDF",
+      "description": "Render HTML, Markdown or a URL to a PDF in headless Chromium and return a download link. Uses 1 credit from the user's Shotlane account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "html": {
+            "type": "string",
+            "description": "Full HTML document to render."
+          },
+          "markdown": {
+            "type": "string",
+            "description": "Alternatively, Markdown; rendered with a clean document style."
+          },
+          "url": {
+            "type": "string",
+            "description": "Alternatively, a public page URL to print."
+          },
+          "paper": {
+            "type": "string",
+            "enum": [
+              "A4",
+              "Letter",
+              "Legal",
+              "A3",
+              "A5",
+              "Tabloid"
+            ],
+            "default": "A4"
+          },
+          "landscape": {
+            "type": "boolean",
+            "default": false
+          },
+          "margin": {
+            "type": "string",
+            "description": "Page margin on all sides, e.g. 15mm or 0.5in. Default 0."
+          },
+          "page_numbers": {
+            "type": "boolean",
+            "description": "Add a '1 / N' page number footer.",
+            "default": false
+          }
+        }
+      }
+    },
+    {
+      "name": "read_page",
+      "title": "Read a web page as Markdown",
+      "description": "Load a public web page in a real browser (JavaScript executed) and return its main content as clean Markdown, with title and metadata. Works on single-page apps and JavaScript-heavy sites. Uses 1 credit from the user's Shotlane account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Page URL; https:// is assumed if omitted."
+          },
+          "main_content": {
+            "type": "boolean",
+            "description": "Extract only the main article/content (drops nav, footer, ads). Set false for the whole page.",
+            "default": true
+          },
+          "selector": {
+            "type": "string",
+            "description": "Optional CSS selector; convert only this element."
+          },
+          "include_links": {
+            "type": "boolean",
+            "default": true
+          },
+          "wait_for_selector": {
+            "type": "string",
+            "description": "Optional CSS selector to wait for before extracting."
+          },
+          "max_chars": {
+            "type": "integer",
+            "description": "Cut the Markdown after this many characters (default 100000)."
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    {
+      "name": "check_page",
+      "title": "Check a page on phone, tablet and desktop",
+      "description": "Check whether a public web page looks right on phone, tablet and desktop. Returns a screenshot per device plus what went wrong on each: sideways scrolling and the elements causing it, JavaScript errors, failed requests and broken images. Use it when the user asks whether a page looks right, works on mobile or has layout bugs, or after a deploy. To just see a page, including on one device, use screenshot instead. The user sees the images side by side in an inline viewer. Uses 1 credit per device.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Page URL; https:// is assumed if omitted."
+          },
+          "devices": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "desktop",
+                "desktop_hd",
+                "laptop",
+                "ipad",
+                "iphone",
+                "iphone_se",
+                "pixel",
+                "galaxy",
+                "iphone_duo",
+                "iphone_duo_cover"
+              ]
+            },
+            "description": "Default: iphone, ipad, desktop.",
+            "maxItems": 4
+          },
+          "full_page": {
+            "type": "boolean",
+            "description": "Capture whole pages instead of the first screen.",
+            "default": false
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    {
+      "name": "credits",
+      "title": "Check Shotlane credits",
+      "description": "Show how many Shotlane render credits remain on this account. Does not use credits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
+}
