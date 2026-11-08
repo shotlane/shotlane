@@ -55,7 +55,7 @@ python scripts/shotlane.py pdf --html invoice.html --paper Letter --out invoice.
 - **Cookie banners and ads** are hidden automatically by the MCP tools; with the script use `--clean`.
 - **Long pages:** `read` returns the main article by default; use `--whole-page` (`main_content=false`) for navigation-heavy pages like listings or forums.
 - **Errors:** `401` = missing/invalid key, `402` = out of credits: when the error message has a top-up link (a Shotlane page that opens Stripe checkout for this account; nothing is charged until the user pays), give the user that link instead of opening it yourself; otherwise, or for other amounts, https://shotlane.dev/pricing, and free credits top up to 100 at the start of every month (UTC), `422` = the page could not be loaded (site down, blocked, or selector not found). Only public URLs work — private/internal addresses are refused.
-- Do not loop over many URLs one by one for large batches: use POST https://shotlane.dev/v1/bulk (up to 500 URLs, poll GET /v1/bulk/{id}, download the ZIP) or the bulk page at https://shotlane.dev/bulk.
+- Do not loop over many URLs one by one for large batches: use POST https://shotlane.dev/v1/bulk (up to 500 URLs, poll GET /v1/bulk/{id}, download the ZIP) or the bulk page, https://shotlane.dev/bulk.
 
 ## API reference
 
