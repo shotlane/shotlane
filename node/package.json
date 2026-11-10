@@ -1,0 +1,16 @@
+{
+  "name": "shotlane",
+  "version": "1.2.0",
+  "description": "Screenshots, PDFs, Markdown and page checks of any web page, from the terminal or Node (no dependencies)",
+  "type": "module",
+  "main": "shotlane.mjs",
+  "exports": "./shotlane.mjs",
+  "bin": { "shotlane": "cli.mjs" },
+  "files": ["shotlane.mjs", "cli.mjs"],
+  "engines": { "node": ">=18" },
+  "license": "MIT",
+  "homepage": "https://shotlane.dev/docs/sdks",
+  "repository": { "type": "git", "url": "git+https://github.com/shotlane/shotlane.git", "directory": "node" },
+  "bugs": "https://github.com/shotlane/shotlane/issues",
+  "keywords": ["screenshot", "pdf", "markdown", "headless", "chromium", "cli", "mcp", "crawler"]
+}

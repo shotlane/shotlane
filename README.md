@@ -33,6 +33,14 @@ npx skills add shotlane/shotlane
 
 [skills/shotlane](skills/shotlane) tells an agent when and how to call Shotlane, with a one-file Python script. No MCP needed.
 
+## Command line
+
+```bash
+npx shotlane check example.com
+```
+
+[node](node) is the `shotlane` npm package: a command for screenshots, PDFs, Markdown and checks, and a Node client.
+
 ## Without a key
 
 ```bash
